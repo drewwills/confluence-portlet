@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    It is recommended but not required to deploy your application with settings
+    specific to the Development environment and overlay the files named here on
+    top of them for the other environments.
+
+    The tags are described as follows:
+
+    environment/@name = contains files to be deployed to the named
+                        environment (either Development, Test, QA or
+                        Production)
+    file    /name     = the name of the file in /WEB-INF/configs/promotion
+    file/target       = location the file/name should be copied to.  Note
+                        that there is no leading '/' character.
+
+    The names of the files below should follow a similar convention of
+        [campus]-[target environment]-[war file name]-[actual file name]
+
+-->
+<promotion-rules>
+	<environment name="Test" campus="illinois">
+		<file>
+			<name>serverURLProperties-test.xml</name>
+			<target>WEB-INF/serverURLProperties.xml</target>
+		</file>
+		<file>
+			<name>log4j.xml</name>
+			<target>WEB-INF/classes/log4j.xml</target>
+		</file>
+	</environment>
+    <environment name="Production" campus="illinois">
+        <file>
+            <name>serverURLProperties-prod.xml</name>
+            <target>WEB-INF/serverURLProperties.xml</target>
+        </file>
+        <file>
+            <name>log4j.xml</name>
+            <target>WEB-INF/classes/log4j.xml</target>
+        </file>
+    </environment>
+</promotion-rules>

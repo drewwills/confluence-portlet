@@ -1,0 +1,23 @@
+<atlassian-plugin key="edu.illinois.my.wiki.plugin" name="Portal Plugin" plugins-version="1">
+    <plugin-info>
+        <description>Servlets to communicate with the Portal and people from the portal.</description>
+        <vendor name="CITES" url="http://www.cites.illinois.edu/"/>
+        <version>1.0</version>
+    </plugin-info>
+    <servlet-context-listener name="Portal Listener" key="portalListener"
+            class="edu.illinois.my.wiki.plugin.ServletInitializationAndConfluenceWiring">
+        <description>Initializes the servlets.</description>
+    </servlet-context-listener>
+    <servlet-filter name="Portal Filter" key="portalFilter"
+            class="com.google.inject.servlet.GuiceFilter" location="before-login">
+        <description>Sends requests to the Portal servlets.</description>
+        <url-pattern>/portal/*</url-pattern>
+    </servlet-filter>
+    <!-- see confluence-project/confluence/src/etc/java/plugins/lucene-search-mappers.xml -->
+    <lucene-search-filter-mapper name="Portal Search Filter"
+            key="userPermissionsFilter"
+            class="edu.illinois.my.wiki.plugin.servlet.action.search.UserPermissionsSearchFilterMapper"
+            handles="userPermissionsFilter">
+        <description>Adds the ability to search for a particular user instead of just the signed in user.</description>
+    </lucene-search-filter-mapper>
+</atlassian-plugin>

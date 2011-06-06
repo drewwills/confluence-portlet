@@ -1,0 +1,122 @@
+This is a design overview of the CITES Wiki Portlet which is meant to be
+deployed to the Portal and Wiki. This document should allow a person to
+understand the layout of the project and how to add functionality. It is very
+much under development and may be removed in favor of other documentation.
+
+This is a portlet written for uPortal 3.1 which will communicate
+with a plugin written for Confluence 3.0. Under the assumption that the
+username is the same for the portal and the wiki, the portlet will display
+links to the user's recently updated pages, 'favourite' spaces, 'favourite'
+pages, and searches performed from the portlet. When the user clicks on the
+link, they are logged into the wiki in a new window or tab and taken to the
+location. Each request is validated by performing a 'callback' to the portal.
+
+The code is divided in five Maven modules (which are sub-projects):
+
+PortalPlugin is the plugin written for Confluence. The plugin creates several
+servlets packaged together as an OSGi bundle. A plugin for Confluence should be
+an OSGi bundle to avoid classloader issues and to be compliant with the current
+plugin format. Each servlet exposes a different service.
+
+Another Maven project is WikiPortlet. This holds the code which displays the
+portlet UI and performs requests to the portal plugins' servlets.
+
+The Services project holds the code that is needed by both the portlet and the
+servlets, such as the servlet URLs, parameters, and return type. This
+information is tied together as a WikiService.
+
+The Security project contains all the classes related to confirming
+the request or user came from the Portal, which is referred to as a callback.
+
+Finally, the Helpers project provides useful classes used by all projects such
+as a multi-threaded, SSL-optional HttpClient instance.
+
+These projects all share the same parent pom.xml, which is at the top level of
+the project.
+
+Programming style and Maven module integration:
+
+This project was written using Constructor Dependency Injection fairly
+strictly. Instead of manually writing factories, Guice creates the objects.
+Though some factories and builders are used when Guice would be too cumbersome
+to use.
+
+Each Maven project has Guice classes to
+declare which implementations should be used when an interface is a constructor
+parameter. Often, the implementation is package-private and
+the Guice classes will form a tree where packages that more deeply nested
+expose useful interfaces to higher level packages or other projects.
+
+The Injector, which is where all objects are created in Guice, is configured
+using the Guice declaration classes. The Injector is created when the servlet
+listener or portlet is started.
+
+Virtually all packages have the following annotation.
+@DefaultAnnotation(NonNull.class)
+This is used by FindBugs to spot null pointer errors. 'mvn site' will produce
+the FindBugs reports and Javadocs for the projects.
+
+Terminology:
+
+There is a subtle difference between a WikiService (sometimes just referred to
+as a service), and an action. A service is a description of something the
+wiki can provide or do. A service will be implements by actions. In particular,
+there will be 2 corresponding actions: one for the portlet and one for the
+wiki. In the wiki, each action also is made available through a servlet.
+
+To add a new feature:
+
+For adding data classes, I used the following random prime number generator:
+For hash codes: http://www.wolframalpha.com/input/?i=random+primes+<+2^31-1
+
+To add functionality to the system, add a new WikiService to the Services
+project's package edu.illinois.my.wiki.services. The WikiService requires that
+you declare the type of serialized Java object the service will return to the
+portal. This is almost definitely actually extend WikiLocationsService since
+this portlet
+mostly just displays links to the wiki. If instead it redirects the user, use
+the Redirect class in the same package as the return type. With this
+completed, add corresponding actions in PortalPlugin and in WikiPortlet as
+described below.
+
+For the PortalPlugin, implement ServletAction in
+edu.illinois.my.plugin.servlet.action. Afterward, extend PortalServlet in
+edu.illinois.my.plugin.servlet using that ServletAction. Finally, add the
+ServletAction to ActionWiring and the
+PortalServlet to ServletWiring, which will cause a servlet to be created for the
+service.
+
+For the WikiPortlet, the process is a little more complex since this code needs
+to interact with the user interface. A PortletAction should be implemented in
+edu.illinois.my.wiki.portlet.action. See the ActionFactory implementation for
+examples of different PortletActions creation. The wiring of
+the action is a little ad hoc.  A special jsp should be constructed to
+output the results and all the jsps that contain the tab table must be adjusted.
+See the other action jsps for examples. ViewParameters will hold the action
+key and the names of any parameters the action needs from the user interface's
+jsp.
+
+Test Servers Issues:
+
+When deploying to test servers, self-signed certificates are used and would
+need to be
+placed into Java keystores on both the portal and wiki. Also, the portal would
+need its own certificate so the portal can register the callbacks to itself.
+However, SSL certificate checking can now be set in the server properties files.
+The portal test servers currently have a firewall that requires exceptions for
+the wiki server which does need to be opened if not already done.
+
+The callback is the reason the wiki would need the the portal's certificate and
+does need the portal's firewall opened to the wiki.
+
+Confluence Upgrade Problems:
+
+The Confluence internal API used is undocumented and not guaranteed to be
+stable. In one instance,
+I added search filters through the plugin system so I could actually make
+searches on behalf of users, which requires copy and pasting code from the
+Confluence source. In all cases where copying happens, there are comments which
+show where the code came from. This should be useful when the API changes in
+future versions. See the Javadocs for edu.illinois.my.wiki.plugin.servlet.action
+and edu.illinois.my.wiki.plugin.servlet.action.search for more information on
+what code might need to be updated for a new version.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Portal Plugin Callback Server</comment>
+    <entry key="callbackServer">my.illinois.edu</entry>
+    <entry key="useSslCerts">true</entry>
+    <!--
+    <entry key="callbackServer">mytest.illinois.edu</entry>
+    <entry key="useSslCerts">false</entry>
+    -->
+</properties>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>The errors that may be displayed by the portlet.</comment>
+    <entry key="noWikiAccount">You do not have an account on the Wiki.</entry>
+    <entry key="retry">The Wiki could not process your request currently. Please try again or contact the Help Desk if the problem persists.</entry>
+    <entry key="portal">A major error has been detected from the Portal. Please try again or contact the Help Desk if the problem persists.</entry>
+    <entry key="callback">A security error has prevented communication with the Wiki. Please try again or contact the Help Desk if the problem persists.</entry>
+    <entry key="blankQuery">The search query appeared to be blank. Please make sure something is in the Search field.</entry>
+    <entry key="starQuery">The search query may not start with an asterisk.</entry>
+</properties>

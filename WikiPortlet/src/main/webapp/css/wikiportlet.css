@@ -1,0 +1,21 @@
+#wikiportlet ul {float:left; margin:0;padding:0;list-style:none;width:100%;border-bottom:2px solid #006A98;}
+#wikiportlet ul li {float:left;border:1px solid #ccc;list-style:none;margin-right:2px;}
+#wikiportlet ul a, ul li#wikiportlet-hottab {display:block; padding:0 6px; line-height:20px; text-decoration:none; font-size:12px;}
+#wikiportlet ul a {}
+#wikiportlet ul a:hover {text-decoration:underline;color:#003399;}
+#wikiportlet ul li#wikiportlet-hottab { background:#D3D3D3;border-left:1px solid #006A98; border-right:1px solid #006A98;border-top:1px solid #006A98;padding:0;}
+
+/* listing table */
+#wikiportlet .portlet-table {margin:0;}
+#wikiportlet .portlet-table table{width:100%;}
+#wikiportlet .portlet-table h4 {color:#0065A0;padding-bottom:3px;}
+#wikiportlet .portlet-table tr {border:1px solid #C0C0C0;}
+#wikiportlet .portlet-table th {font-weight:bold;text-align:left;font-size:12px;padding:3px 4px;}
+#wikiportlet .portlet-table td {font-weight:normal;text-align:left;font-size:11px;padding:2px 4px;border:none;}
+#wikiportlet .portlet-table td.row-spacer {background-color:#F4FCFF;border-bottom:1px solid silver;border-top:1px solid silver;height:0;line-height:0;}
+
+#wikiportlet .wikiportlet-clear {clear:both;}
+#wikiportlet p {margin:10px 0;}
+#wikiportlet .wikiportlet-search {margin:10px 0;}
+#wikiportlet #wikiportlet-footer a:hover {color:#003399;}
+#wikiportlet .portlet-msg-info{margin-bottom:10px;background:#EEE;border:1px solid #006A98;}

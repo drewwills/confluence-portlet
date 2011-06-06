@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>edu.illinois.my.wiki</groupId>
+    <artifactId>Portlet</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>WikiPortlet</artifactId>
+  <packaging>war</packaging>
+  <name>Wiki Portlet</name>
+  <url>https://wiki.cites.uiuc.edu/</url>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>edu.illinois.cites</groupId>
+      <artifactId>Helpers</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>edu.illinois.cites</groupId>
+      <artifactId>Security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>edu.illinois.my.wiki</groupId>
+      <artifactId>Services</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+      <!--
+      <scope>provided</scope>
+      should be 'provided' for uPortal 3.1 -->
+    </dependency>
+    <dependency>
+      <groupId>javax.portlet</groupId>
+      <artifactId>portlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <!-- For Eclipse JSP validation -->
+      <groupId>org.apache.pluto</groupId>
+      <artifactId>pluto-taglib</artifactId>
+      <version>1.1.7</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>confluence-pac</finalName>
+  </build>
+</project>

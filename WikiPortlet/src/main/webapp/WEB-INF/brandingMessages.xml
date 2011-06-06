@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Any UI wording for the Wiki will be set here except errors.</comment>
+    <entry key="view-firstVisit"><![CDATA[
+    <h2>Welcome to My Wiki!</h2>
+    <p>To begin, click one of the tabs.</p>
+    ]]></entry>
+    <entry key="noFavouritePages"><![CDATA[
+    You have no favourite pages.
+    ]]></entry>
+    <entry key="noFavouriteSpaces"><![CDATA[
+    You have no favourite spaces.
+    ]]></entry>
+    <entry key="noRecentlyUpdated"><![CDATA[
+    No pages were recently updated that you may view.
+    ]]></entry>
+    <entry key="noSearchResults"><![CDATA[
+    No results exist for this search.
+    ]]></entry>
+    <entry key="view-beforeSignon"><![CDATA[
+    ]]></entry>
+    <entry key="view-inSignon"><![CDATA[
+    Login to Dashboard
+    ]]></entry>
+    <entry key="view-afterSignon"><![CDATA[
+    <em>(Link opens in a new window.)</em>
+    ]]></entry>
+</properties>
