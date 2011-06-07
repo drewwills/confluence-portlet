@@ -15,8 +15,6 @@
     </license>
   </licenses>
   <modules>
-    <module>Helpers</module>
-    <module>Security</module>
     <module>Services</module>
     <module>PortalPlugin</module>
     <module>WikiPortlet</module>
